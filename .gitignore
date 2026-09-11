@@ -1,0 +1,6 @@
+/.ruff_cache
+/.venv
+/.vscode*
+*.pyc
+.pytest_cache/
+.ruff_cache/
