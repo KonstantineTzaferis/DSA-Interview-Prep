@@ -16,7 +16,7 @@ class Deque:
         new_node = Node(value)
         if self.isEmpty(): 
             self.right = self.left = new_node 
-            return 
+            return
         
         self.right.next = new_node
         new_node.prev = self.right 
