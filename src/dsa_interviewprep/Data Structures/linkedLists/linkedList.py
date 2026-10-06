@@ -1,11 +1,11 @@
 class Node: 
     def __init__(self, val): 
         self.val = val 
-        self.next: Node | None 
+        self.next: Node | None = None
 
 class linkedList: 
     def __init__(self): 
-        self.head: Node | None 
+        self.head: Node | None = None 
         self.size = 0 
 
     def get(self, index: int) -> int: 
@@ -80,6 +80,17 @@ class linkedList:
             curr = after 
 
         self.head = previous 
+            
+
+
+
+
+
+
+
+
+
+        
             
 
 
