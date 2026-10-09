@@ -11,9 +11,11 @@ class Solution:
         for key, value in findings.items(): 
             if len(value) == n -1: 
                 judge = key
+
         for key, value in findings.items(): 
             if judge in value: 
                 judge = -1
+                
         return judge
 
         

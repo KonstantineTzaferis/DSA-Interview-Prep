@@ -1,5 +1,5 @@
 class Solution: 
-    def findDifference(self, s: str, t: str) -> str: 
+    def findDifference(self, s: str, t: str) -> str|None: 
         frequency: dict[str, int] = {}
         for i in range(len(t)): 
             if t[i] not in frequency: 
