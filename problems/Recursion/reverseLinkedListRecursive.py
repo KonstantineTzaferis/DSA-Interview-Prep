@@ -94,7 +94,7 @@ class linkedList:
         after = curr.next 
         curr.next = previous 
         previous = curr
-        curr = after 
+        curr = after
         return self.reverse_recursive(curr, previous)
 
         
