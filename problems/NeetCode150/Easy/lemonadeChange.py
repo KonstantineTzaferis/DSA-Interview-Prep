@@ -30,7 +30,3 @@ class Solution:
                         return False
 
         return True
-
-
-s = Solution()
-print(s.lemonadeChange(bills=[5, 10, 5, 5, 20]))
