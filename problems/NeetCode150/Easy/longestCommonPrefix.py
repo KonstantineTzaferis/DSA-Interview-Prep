@@ -1,17 +1,17 @@
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
-        i = 0 
+        i = 0
         lcp = ""
-        while i <= 200: 
+        while i <= 200:
             iter_lcp = set()
             for word in strs:
-                if i == len(word): 
-                    return lcp 
+                if i == len(word):
+                    return lcp
                 iter_lcp.add(word[i])
-            if len(iter_lcp) > 1: 
+            if len(iter_lcp) > 1:
                 break
-            else: 
+            else:
                 lcp += word[i]
             i += 1
-        
+
         return lcp
