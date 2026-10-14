@@ -13,6 +13,3 @@ class Solution:
         if not positions:
             return [-1, -1]
         return positions
-
-
-s = Solution()
