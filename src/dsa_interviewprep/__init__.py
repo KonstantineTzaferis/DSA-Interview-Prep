@@ -1,2 +1,2 @@
 def main() -> None:
-    print("Hello from dsa-interviewprep!")
+	print("Hello from dsa-interviewprep!")

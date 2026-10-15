@@ -32,6 +32,10 @@ link-mode = "copy"
 # -------------------------
 # Ruff
 # -------------------------
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab" 
+docstring-code-format = true
 
 [tool.ruff]
 line-length = 100
