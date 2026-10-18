@@ -4,7 +4,3 @@ class Solution:
 			if 2**i == n:
 				return True
 		return False
-
-
-s = Solution()
-print(s.isPowerofTwo(2147483647))
