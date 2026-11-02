@@ -1,15 +1,21 @@
 class Solution:
-	def climbStairs(self, n: int, memo: dict = {}) -> int:
-		if n in memo:
-			return memo[n]
-		else:
-			if n < 0:
-				return 0
-			elif n == 0:
-				return 1
-			else:
-				left = self.climbStairs(n - 2)
-				right = self.climbStairs(n - 1)
-				memo[n] = left + right
+	def climbStairs(self, n: int) -> int:
+		memo: dict = {}
 
-				return left + right
+		def recursive(number: int):
+			if number in memo:
+				return memo[number]
+			else:
+				if number < 0:
+					return 0
+				elif number == 0:
+					return 1
+				else:
+					left = recursive(number - 1)
+					right = recursive(number - 2)
+					ways = left + right
+					memo[number] = ways
+
+			return memo[number]
+
+		return recursive(n)

@@ -1,162 +1,177 @@
-from typing import Optional 
-
-class TreeNode: 
-    def __init__(self, val) -> None: 
-        self.val = val 
-        self.left: Optional[TreeNode] = None 
-        self.right: Optional[TreeNode] = None 
+from typing import Optional
 
 
-class BinarySearchTree: 
-    def __init__(self) -> None: 
-        self.root: Optional[TreeNode] = None
+class TreeNode:
+	def __init__(self, val) -> None:
+		self.val = val
+		self.left: Optional[TreeNode] = None
+		self.right: Optional[TreeNode] = None
 
-    def search(self, root: Optional[TreeNode], target) -> bool: 
-        if not root: 
-            return False 
 
-        if root.val == target: 
-            return True
-        elif root.val > target: 
-            return self.search(root.left, target)
-        else: 
-            return self.search(root.right, target)
+class BinarySearchTree:
+	def __init__(self) -> None:
+		self.root: Optional[TreeNode] = None
 
-    def insert_iterative(self, val) -> None:
-        new_node = TreeNode(val)
+	def search(self, root: Optional[TreeNode], target) -> bool:
+		if not root:
+			return False
 
-        if not self.root:
-            self.root = new_node
-            return
+		if root.val == target:
+			return True
+		elif root.val > target:
+			return self.search(root.left, target)
+		else:
+			return self.search(root.right, target)
 
-        curr = self.root
+	def insert_iterative(self, val) -> None:
+		new_node = TreeNode(val)
 
-        while curr:
-            if val > curr.val:
-                if curr.right is None:
-                    curr.right = new_node
-                    return
+		if not self.root:
+			self.root = new_node
+			return
 
-                curr = curr.right
+		curr = self.root
 
-            elif val < curr.val:
-                if curr.left is None:
-                    curr.left = new_node
-                    return
+		while curr:
+			if val > curr.val:
+				if curr.right is None:
+					curr.right = new_node
+					return
 
-                curr = curr.left
+				curr = curr.right
 
-            else:
-                return
+			elif val < curr.val:
+				if curr.left is None:
+					curr.left = new_node
+					return
 
-    def insert_recursive(self, root: Optional[TreeNode], val) -> TreeNode|None: 
-            if root is None: 
-                return TreeNode(val)
-    
-            if val > root.val: 
-                root.right = self.insert_recursive(root.right, val)
-            elif val < root.val: 
-                root.left = self.insert_recursive(root.left, val)
-            else: 
-                return root 
+				curr = curr.left
 
-    def remove_node_iterative(self, target) -> int|None: 
-        curr: Optional[TreeNode] = self.root 
-        prev: Optional[TreeNode] = None
+			else:
+				return
 
-        while curr: 
-            if target < curr.val: 
-                prev = curr 
-                curr = curr.left 
-            elif target > curr.val: 
-                prev = curr 
-                curr = curr.right 
-            else: 
-                break # We have found the target 
+	def insert_recursive(self, root: Optional[TreeNode], val) -> TreeNode | None:
+		if root is None:
+			return TreeNode(val)
 
-        # We have no root of the tree(Empty Tree)
-        if curr is None: 
-            return 
+		if val > root.val:
+			root.right = self.insert_recursive(root.right, val)
+		elif val < root.val:
+			root.left = self.insert_recursive(root.left, val)
+		else:
+			return root
 
-        # First Case: We have no children(leaf Node)
-        if curr.left is None and curr.right is None: 
-            if prev is None: 
-                self.root = None 
+	def remove_node_iterative(self, target) -> int | None:
+		curr: Optional[TreeNode] = self.root
+		prev: Optional[TreeNode] = None
 
-            elif prev.left is curr: 
-                prev.left = None 
+		while curr:
+			if target < curr.val:
+				prev = curr
+				curr = curr.left
+			elif target > curr.val:
+				prev = curr
+				curr = curr.right
+			else:
+				break  # We have found the target
 
-            else: 
-                prev.right = None
+		# We have no root of the tree(Empty Tree)
+		if curr is None:
+			return
 
-            # This stops the function (we have deleted the node)
-            return  
+		# First Case: We have no children(leaf Node)
+		if curr.left is None and curr.right is None:
+			if prev is None:
+				self.root = None
 
-        #------------------------------------------------
-        # CASE 2: THE CURR HAS 1 CHILDREN (LEFT OR RIGHT)
-        #------------------------------------------------
-        if (curr.right and not curr.left) or (not curr.right and curr.left): 
-            if curr.left: 
-                child = curr.left 
-            else: 
-                child = curr.right 
+			elif prev.left is curr:
+				prev.left = None
 
-            # Deleting the root 
-            if prev is None: 
-                self.root = child 
+			else:
+				prev.right = None
 
-            # Now we actually put the node into the right or left of the prev
-            elif prev.left is curr: 
-                prev.left = child 
-            else: 
-                prev.right = child 
+			# This stops the function (we have deleted the node)
+			return
 
-        #-----------------------------------------------
-        # CASE 3: THE CURR NODE HAS EXACTLY TWO CHILDREN
-        #-----------------------------------------------
-        successor_parent = curr 
-        successor = curr.right 
+		# ------------------------------------------------
+		# CASE 2: THE CURR HAS 1 CHILDREN (LEFT OR RIGHT)
+		# ------------------------------------------------
+		if (curr.right and not curr.left) or (not curr.right and curr.left):
+			if curr.left:
+				child = curr.left
+			else:
+				child = curr.right
 
-        while successor.left: 
-            successor_parent = successor
-            successor = successor.left
+			# Deleting the root
+			if prev is None:
+				self.root = child
 
-        curr.val = successor.val 
+			# Now we actually put the node into the right or left of the prev
+			elif prev.left is curr:
+				prev.left = child
+			else:
+				prev.right = child
 
-        if successor_parent is curr: 
-            curr.right = successor.right 
-        else: 
-            successor_parent.left = successor.right           
+		# -----------------------------------------------
+		# CASE 3: THE CURR NODE HAS EXACTLY TWO CHILDREN
+		# -----------------------------------------------
+		successor_parent = curr
+		successor = curr.right
 
-    def find_minimum(self, root: TreeNode) -> TreeNode: 
-        """The minimum of the binary search tree will always be on the left side of the tree. 
-           Can also work with subtrees.
+		while successor.left:
+			successor_parent = successor
+			successor = successor.left
 
-        Returns:
-            Treenode: Node of the tree
-        """
-        curr = root
+		curr.val = successor.val
 
-        while curr and curr.left: 
-            curr = curr.left 
+		if successor_parent is curr:
+			curr.right = successor.right
+		else:
+			successor_parent.left = successor.right
 
-        return curr 
+	def find_minimum(self, root: TreeNode) -> TreeNode:
+		"""The minimum of the binary search tree will always be on the left side of the tree.
+		   Can also work with subtrees.
 
-        
+		Returns:
+		    Treenode: Node of the tree
+		"""
+		curr = root
 
-        
+		while curr and curr.left:
+			curr = curr.left
 
-        
-        
+		return curr
 
-        
-            
-        
-        
-        
-            
+	def inorder_traversal_recursive(self, root: Optional[TreeNode]) -> list[int]:
+		nodes = []
 
-        
-        
+		def recursive_helper(root):
+			if not root:
+				return
 
-        
+			recursive_helper(root.left)
+			nodes.append(root.val)
+			recursive_helper(root.right)
+
+		recursive_helper(root)
+		return nodes
+
+	def inorder_traversal_iterative(self, root: Optional[TreeNode]) -> list[int]:
+		if not root:
+			return []
+
+		stack = []
+		nodes_inorder = []
+		curr = root
+
+		while stack or curr:
+			while curr:
+				stack.append(curr)
+				curr = curr.left
+
+			curr = stack.pop()
+			nodes_inorder.append(curr.val)
+			curr = curr.right
+
+		return nodes_inorder
