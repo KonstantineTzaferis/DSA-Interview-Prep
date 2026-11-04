@@ -24,4 +24,3 @@ class Solution:
 			curr = curr.right
 
 		return nodes_preorder
-

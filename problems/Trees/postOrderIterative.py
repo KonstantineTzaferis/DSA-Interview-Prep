@@ -31,6 +31,3 @@ class Solution:
 					last_visited = stack.pop()
 
 		return nodes_postorder
-
-
-
