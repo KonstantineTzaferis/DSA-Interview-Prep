@@ -1,4 +1,5 @@
 from typing import Optional
+from collections import deque
 
 
 class TreeNode:
@@ -175,3 +176,26 @@ class BinarySearchTree:
 			curr = curr.right
 
 		return nodes_inorder
+
+	def bfs(self, root: Optional[TreeNode]) -> list[int]:
+
+		if not root:
+			return []
+
+		queue = deque()
+
+		queue.append(root)
+
+		nodes_bfs = []
+		while len(queue) > 0:
+			curr = queue.popleft()
+
+			nodes_bfs.append(curr.val)
+
+			if curr.left:
+				queue.append(curr.left)
+
+			if curr.right:
+				queue.append(curr.right)
+
+		return nodes_bfs
