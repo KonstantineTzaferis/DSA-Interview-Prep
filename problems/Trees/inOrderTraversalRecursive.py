@@ -23,19 +23,3 @@ class Solution:
 
 		helper(root)
 		return nodes
-
-
-root = TreeNode(8)
-
-root.left = TreeNode(4)
-root.right = TreeNode(12)
-
-root.left.left = TreeNode(2)
-root.left.right = TreeNode(6)
-
-root.left.right.left = TreeNode(5)
-
-root.right.right = TreeNode(14)
-
-s = Solution()
-print(s.inOrderTraversalRecursive(root))

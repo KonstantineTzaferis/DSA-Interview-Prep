@@ -142,9 +142,9 @@ class TreeMap:
 		curr.key = successor.key
 
 		if successor_parent is curr:
-			successor_parent.right = successor.right
+			successor_parent.right = successor.right # type: ignore
 		else:
-			successor_parent.left = successor.right
+			successor_parent.left = successor.right # type: ignore
 
 	def getInorderKeys(self) -> list[Optional[int]]:
 		if not self.root:

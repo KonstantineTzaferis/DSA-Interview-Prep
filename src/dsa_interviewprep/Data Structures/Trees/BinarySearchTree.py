@@ -116,8 +116,8 @@ class BinarySearchTree:
 		# -----------------------------------------------
 		# CASE 3: THE CURR NODE HAS EXACTLY TWO CHILDREN
 		# -----------------------------------------------
-		successor_parent = curr
-		successor = curr.right
+		successor_parent: Optional[TreeNode] = curr
+		successor: Optional[TreeNode] = curr.right
 
 		while successor.left:
 			successor_parent = successor
