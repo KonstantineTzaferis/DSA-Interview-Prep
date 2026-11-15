@@ -199,3 +199,27 @@ class BinarySearchTree:
 				queue.append(curr.right)
 
 		return nodes_bfs
+
+	def bfs_levels(self, root: Optional[TreeNode]) -> list[list[int]]:
+		if not root:
+			return []
+
+		queue = deque()
+		queue.append(root)
+
+		nodes_bfs = []
+		while len(queue) > 0:
+			iter_list = []
+			for i in range(len(queue)):
+				curr = queue.popleft()
+				iter_list.append(curr.val)
+
+				if curr.left:
+					queue.append(curr.left)
+
+				if curr.right:
+					queue.append(curr.right)
+
+			nodes_bfs.append(iter_list)
+
+		return nodes_bfs
