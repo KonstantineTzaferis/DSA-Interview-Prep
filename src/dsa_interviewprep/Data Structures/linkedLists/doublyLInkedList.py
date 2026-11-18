@@ -1,8 +1,9 @@
+from typing import Optional 
 class Node:
-	def __init__(self, val):
+	def __init__(self, val: Optional[int]):
 		self.val = val
-		self.next = None
-		self.prev = None
+		self.next: Optional[int] = None
+		self.prev: Optional[int] = None
 
 
 class doublyLinkedList:
@@ -14,7 +15,7 @@ class doublyLinkedList:
 	def get(self, index: int) -> int:
 		if index < 0 or index > self.size - 1:
 			return -1
-		curr = self.head
+		curr: Optional[Node] = self.head
 		for _ in range(index):
 			curr = curr.next
 		return curr.val
