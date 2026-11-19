@@ -1,4 +1,6 @@
-from typing import Optional 
+from typing import Optional
+
+
 class Node:
 	def __init__(self, val: Optional[int]):
 		self.val = val
